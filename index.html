@@ -448,7 +448,7 @@
         </div>
     </section>
 
-    <!-- QUIZ SECTION (Alpine Logic) -->
+    <!-- QUIZ SECTION (Alpine Logic Updated for Auto-Advance) -->
     <section id="quiz" class="py-24 bg-luxury-primary relative border-t border-white/5" x-data="{
         step: 1,
         objective: '',
@@ -458,6 +458,10 @@
         name: '',
         select(field, value) {
             this[field] = value;
+            // Auto-advance logic after 400ms delay for feedback
+            setTimeout(() => {
+                this.next();
+            }, 400);
         },
         next() {
             if (this.step < 4) this.step++;
@@ -482,7 +486,7 @@
     }">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Property Match</span>
+                <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Imóvel Ideal</span>
                 <h2 class="text-3xl md:text-5xl font-light text-white mt-4">Encontre a oportunidade ideal.</h2>
                 <p class="text-luxury-muted mt-4 font-light">Responda a 4 perguntas rápidas para receber uma curadoria personalizada.</p>
             </div>
@@ -514,6 +518,9 @@
                         </h3>
                         <div x-show="objective === 'Vender'">
                             <input type="text" x-model="location" placeholder="Ex: Campeche, Novo Campeche..." class="w-full bg-luxury-primary/50 border border-white/20 p-4 rounded-sm text-white focus:border-luxury-gold focus:outline-none">
+                            <div class="mt-4 flex justify-end">
+                                <button @click="next" class="text-sm text-luxury-gold hover:underline">Avançar</button>
+                            </div>
                         </div>
                         <div x-show="objective !== 'Vender'" class="grid gap-4">
                             <template x-for="t in ['Casa', 'Cobertura', 'Condomínio Fechado', 'Terreno']">
@@ -555,7 +562,8 @@
                     <button @click="prev" :disabled="step === 1" class="flex items-center gap-2 text-sm uppercase tracking-wider transition-colors text-gray-400 hover:text-white disabled:opacity-30">
                         <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar
                     </button>
-                    <button @click="next" x-show="step < 4" :disabled="!isValid()" class="flex items-center gap-2 text-sm uppercase tracking-wider transition-colors text-luxury-gold hover:text-white disabled:opacity-30">
+                    <!-- Hide next button on steps where auto-advance is active, unless it's step 2 (Vender) or step 4 (Name) -->
+                    <button @click="next" x-show="step === 2 && objective === 'Vender'" :disabled="!isValid()" class="flex items-center gap-2 text-sm uppercase tracking-wider transition-colors text-luxury-gold hover:text-white disabled:opacity-30">
                         Próximo <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </button>
                 </div>
