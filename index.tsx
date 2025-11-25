@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
 
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Verifica se o elemento root existe antes de tentar renderizar o React.
+// Isso permite que o site funcione em "Modo Estático" (apenas index.html + Alpine.js)
+// sem gerar erros de execução.
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+} else {
+  console.log("Modo Estático Ativo: Elemento #root não encontrado. O React não será inicializado.");
+}

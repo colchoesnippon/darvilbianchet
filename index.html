@@ -1,79 +1,659 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Darvil Bianchet | Imóveis de Alto Padrão</title>
-    <meta name="description" content="A curadoria definitiva de imóveis de luxo no Sul da Ilha de Florianópolis." />
-    
-    <!-- Fonts: Inter for clean, modern luxury look -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darvil Bianchet | Luxury Real Estate</title>
+    <meta name="description" content="A curadoria definitiva de imóveis de luxo no Sul da Ilha de Florianópolis.">
+
+    <!-- Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+
+    <!-- Tailwind CSS Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              luxury: {
-                primary: '#040B14',   // Deep Royal Navy (Main Background)
-                secondary: '#0B1526', // Rich Navy (Section Contrast)
-                card: '#111C30',      // Lighter Navy (Cards/Elements)
-                gold: '#D4AF37',      // Muted Gold
-                goldLight: '#F2D377',
-                text: '#EAEAEA',
-                muted: '#94A3B8',     // Slate Blueish Grey
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        luxury: {
+                            primary: '#040B14',   // Deep Royal Navy
+                            secondary: '#0B1526', // Rich Navy
+                            card: '#111C30',      // Lighter Navy
+                            gold: '#D4AF37',      // Muted Gold
+                            muted: '#94A3B8',     // Slate Blueish Grey
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     </script>
 
-    <!-- AOS Animation Library CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Alpine.js (Logic) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-      /* Custom Scrollbar for Webkit */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #040B14; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1E293B; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #D4AF37; 
-      }
-      body {
-        background-color: #040B14;
-        color: #EAEAEA;
-      }
+        [x-cloak] { display: none !important; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #040B14; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+        body { background-color: #040B14; color: #EAEAEA; }
+        
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(4, 11, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Security CSS to ensure content is visible if JS fails partially */
+        section { opacity: 1 !important; visibility: visible !important; }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
     "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-    
-    <!-- AOS Animation Library JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  </body>
+<body class="font-sans antialiased overflow-x-hidden" x-data="{ 
+    mobileMenuOpen: false, 
+    scrolled: false,
+    brokerPhone: '5548999278420'
+}" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- HEADER -->
+    <header 
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent"
+        :class="{ 'glass shadow-lg py-4': scrolled, 'bg-transparent py-6': !scrolled }"
+    >
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-xl md:text-2xl font-light tracking-[0.2em] text-white hover:text-luxury-gold transition-colors duration-300">
+                DARVIL BIANCHET
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#hero" class="text-sm font-light tracking-wide text-luxury-muted hover:text-luxury-gold transition-colors">Início</a>
+                <a href="#process" class="text-sm font-light tracking-wide text-luxury-muted hover:text-luxury-gold transition-colors">Processo</a>
+                <a href="#about" class="text-sm font-light tracking-wide text-luxury-muted hover:text-luxury-gold transition-colors">Sobre</a>
+                <a href="#launches" class="text-sm font-light tracking-wide text-luxury-muted hover:text-luxury-gold transition-colors">Lançamentos</a>
+                <a href="#quiz" class="text-sm font-light tracking-wide text-luxury-muted hover:text-luxury-gold transition-colors">Match</a>
+                
+                <a :href="`https://wa.me/${brokerPhone}`" target="_blank"
+                   class="px-6 py-2 border border-luxury-gold/50 text-luxury-gold text-sm tracking-wider hover:bg-luxury-gold hover:text-black transition-all duration-300 rounded-sm">
+                    FALE COMIGO
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" @click="mobileMenuOpen = !mobileMenuOpen">
+                <i data-lucide="menu" x-show="!mobileMenuOpen"></i>
+                <i data-lucide="x" x-show="mobileMenuOpen" x-cloak></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenuOpen" x-transition.opacity
+             class="absolute top-full left-0 w-full bg-luxury-primary/95 backdrop-blur-xl border-b border-white/10 md:hidden flex flex-col items-center py-8 space-y-6 shadow-2xl" x-cloak>
+            <a href="#hero" @click="mobileMenuOpen = false" class="text-lg font-light text-white hover:text-luxury-gold">Início</a>
+            <a href="#process" @click="mobileMenuOpen = false" class="text-lg font-light text-white hover:text-luxury-gold">Processo</a>
+            <a href="#about" @click="mobileMenuOpen = false" class="text-lg font-light text-white hover:text-luxury-gold">Sobre</a>
+            <a href="#launches" @click="mobileMenuOpen = false" class="text-lg font-light text-white hover:text-luxury-gold">Lançamentos</a>
+            <a href="#quiz" @click="mobileMenuOpen = false" class="text-lg font-light text-white hover:text-luxury-gold">Match</a>
+            <a :href="`https://wa.me/${brokerPhone}`" target="_blank" class="px-8 py-3 bg-luxury-gold text-black text-sm tracking-widest font-medium rounded-sm">
+                FALE COMIGO
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen w-full flex items-center pt-24 pb-12 overflow-hidden bg-luxury-primary">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://colchoesnippon.com/wp-content/uploads/2025/11/sul-da-ilha-corretor-imoveis-darvil-bianchet-apartamento-casa-venda-floripa.jpg" 
+                 alt="Luxury Residence" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-luxury-primary via-luxury-primary/80 to-luxury-primary/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-luxury-primary/40 to-luxury-primary"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <!-- Left: Text -->
+                <div class="text-center lg:text-left order-1">
+                    <span class="inline-block py-1 px-3 border border-luxury-gold/30 rounded-full text-xs font-medium tracking-[0.2em] text-luxury-gold mb-6 backdrop-blur-sm bg-luxury-gold/5">
+                        FLORIANÓPOLIS • SUL DA ILHA
+                    </span>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-6">
+                        Seu imóvel certo <br class="hidden lg:block"/>
+                        em Florianópolis, <br />
+                        <span class="font-semibold text-luxury-gold italic">sem perda de tempo.</span>
+                    </h1>
+                    
+                    <p class="text-luxury-muted text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0 opacity-90">
+                        Me diga o que você procura e eu disponibilizo as melhores opções atualizadas e disponíveis com total segurança e transparência.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' })"
+                            class="group relative px-8 py-4 bg-luxury-gold text-black font-bold tracking-widest overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)] rounded-sm text-sm md:text-base">
+                            <span class="relative z-10">ENCONTRAR MEU IMÓVEL</span>
+                            <div class="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out opacity-30"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Broker Image & Card -->
+                <div class="relative order-2 flex justify-center lg:justify-end">
+                    <!-- Glow -->
+                    <div class="absolute inset-0 bg-blue-900/30 blur-[100px] rounded-full transform translate-x-10"></div>
+                    
+                    <div class="relative w-full max-w-md">
+                        <div class="relative rounded-3xl overflow-hidden border border-white/5 shadow-2xl aspect-[3/4] md:aspect-auto md:h-[600px]">
+                            <img src="https://colchoesnippon.com/wp-content/uploads/2025/11/darvil-bianchet-corretor-imoveis-de-luxo-em-florianopolis-sul-da-ilha.jpg" 
+                                 alt="Darvil Bianchet" class="w-full h-full object-cover object-top">
+                            <div class="absolute inset-0 bg-gradient-to-t from-luxury-primary/90 via-transparent to-transparent opacity-60"></div>
+                        </div>
+
+                        <!-- Floating Card -->
+                        <div class="absolute -bottom-6 -left-4 md:-left-12 bg-luxury-card border border-white/5 p-6 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] max-w-[280px] md:max-w-[320px] backdrop-blur-xl">
+                            <div class="flex items-start gap-4 mb-3">
+                                <div class="w-2 h-2 mt-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]"></div>
+                                <div>
+                                    <p class="text-white font-medium text-lg leading-snug">
+                                        Sou o DARVIL BIANCHET, <br/>
+                                        <span class="text-luxury-muted font-light">corretor local.</span>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg px-3 py-2 w-fit">
+                                <i data-lucide="check-circle-2" class="text-luxury-gold w-4 h-4"></i>
+                                <span class="text-xs text-gray-300 tracking-wider">CRECI SC 58927</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce-slow opacity-30 hover:opacity-100 transition-opacity cursor-pointer hidden md:block" onclick="document.getElementById('process').scrollIntoView({ behavior: 'smooth' })">
+            <i data-lucide="arrow-down" class="text-white"></i>
+        </div>
+    </section>
+
+    <!-- SERVICE PROCESS -->
+    <section id="process" class="py-24 bg-luxury-secondary relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-luxury-primary to-transparent opacity-20 pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Metodologia</span>
+                <h2 className="text-3xl md:text-5xl font-light text-white mt-4">
+                    3 Passos para seu <span class="italic font-serif text-luxury-muted">Imóvel Ideal</span>
+                </h2>
+                <p class="text-luxury-muted font-light mt-4 max-w-2xl mx-auto">
+                    Uma jornada desenhada para eliminar ruídos e garantir assertividade na sua escolha.
+                </p>
+            </div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Line -->
+                <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-luxury-gold/30 to-transparent z-0"></div>
+
+                <!-- Steps -->
+                <div class="relative flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-luxury-primary border border-luxury-gold/20 flex items-center justify-center mb-8 relative z-10 group-hover:border-luxury-gold transition-colors duration-500 shadow-xl">
+                        <span class="text-3xl font-light text-luxury-gold font-serif">01</span>
+                        <div class="absolute -bottom-2 -right-2 bg-luxury-gold text-black p-2 rounded-full transform scale-75 md:scale-100">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl text-white font-light mb-4 group-hover:text-luxury-gold transition-colors">O Briefing</h3>
+                    <p class="text-luxury-muted font-light text-sm md:text-base max-w-xs">
+                        Você me conta sua necessidade. Alinhamos o tipo de imóvel, o orçamento e a região.
+                    </p>
+                </div>
+
+                <div class="relative flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-luxury-primary border border-luxury-gold/20 flex items-center justify-center mb-8 relative z-10 group-hover:border-luxury-gold transition-colors duration-500 shadow-xl">
+                        <span class="text-3xl font-light text-luxury-gold font-serif">02</span>
+                        <div class="absolute -bottom-2 -right-2 bg-luxury-gold text-black p-2 rounded-full transform scale-75 md:scale-100">
+                            <i data-lucide="filter" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl text-white font-light mb-4 group-hover:text-luxury-gold transition-colors">A Curadoria</h3>
+                    <p class="text-luxury-muted font-light text-sm md:text-base max-w-xs">
+                        Eu filtro o mercado e envio apenas as opções que realmente fazem sentido, poupando seu tempo.
+                    </p>
+                </div>
+
+                <div class="relative flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-luxury-primary border border-luxury-gold/20 flex items-center justify-center mb-8 relative z-10 group-hover:border-luxury-gold transition-colors duration-500 shadow-xl">
+                        <span class="text-3xl font-light text-luxury-gold font-serif">03</span>
+                        <div class="absolute -bottom-2 -right-2 bg-luxury-gold text-black p-2 rounded-full transform scale-75 md:scale-100">
+                            <i data-lucide="key" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl text-white font-light mb-4 group-hover:text-luxury-gold transition-colors">A Conquista</h3>
+                    <p class="text-luxury-muted font-light text-sm md:text-base max-w-xs">
+                        Visitamos juntos e fecho o negócio com total suporte jurídico e segurança para você.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-luxury-secondary overflow-hidden border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image -->
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="aspect-[3/4] max-w-md mx-auto relative z-10 overflow-hidden rounded-sm shadow-xl">
+                        <img src="https://colchoesnippon.com/wp-content/uploads/2025/11/558092400_18527960554056463_4950913360348287322_n.jpg" 
+                             alt="About Darvil" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105 filter grayscale hover:grayscale-0">
+                        <div class="absolute inset-0 border border-white/10 pointer-events-none"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 border border-luxury-gold/30 z-0 hidden md:block"></div>
+                </div>
+
+                <!-- Text -->
+                <div class="w-full lg:w-1/2">
+                    <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase block mb-4">Sobre o Especialista</span>
+                    <h2 class="text-3xl md:text-5xl font-light text-white mb-8 leading-tight">
+                        Mais que um corretor, <br />
+                        <span class="italic font-serif text-luxury-muted">seu parceiro de investimentos.</span>
+                    </h2>
+                    
+                    <div class="space-y-6 text-luxury-muted font-light text-lg leading-relaxed">
+                        <p>Com anos de atuação no mercado de alto padrão, especializei-me em conectar compradores exigentes às propriedades mais exclusivas do Sul da Ilha.</p>
+                        <p>Minha abordagem é baseada na discrição, na análise técnica precisa e, acima de tudo, na compreensão profunda do estilo de vida que Florianópolis oferece.</p>
+                        <p>Seja para morar ou investir, meu compromisso é entregar uma experiência imobiliária sem atritos e com máxima rentabilidade.</p>
+                    </div>
+
+                    <div class="mt-12 flex gap-8">
+                        <div>
+                            <p class="text-4xl font-light text-white mb-2">+100mi</p>
+                            <p class="text-xs uppercase tracking-widest text-luxury-muted">VGV Negociado</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-light text-white mb-2">Sul da Ilha</p>
+                            <p class="text-xs uppercase tracking-widest text-luxury-muted">Especialidade</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED LAUNCHES (Alpine JS Data) -->
+    <section id="launches" class="py-24 bg-luxury-primary border-b border-white/5 relative" x-data="{
+        modalOpen: false,
+        activeProp: null,
+        formData: { name: '', phone: '' },
+        properties: [
+            {
+                id: 1,
+                title: 'Reserva do Mar',
+                neighborhood: 'Novo Campeche',
+                locationHighlight: 'Pé na areia exclusivo',
+                image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
+                desc: 'Sofisticação absoluta a poucos passos do oceano.',
+                fullDesc: 'Um projeto arquitetônico premiado que une o minimalismo tropical com o luxo contemporâneo. Coberturas duplex com piscina privativa.',
+                features: ['Vista Mar', '3 a 4 Suítes', 'Automação Full']
+            },
+            {
+                id: 2,
+                title: 'Natus Residence',
+                neighborhood: 'Ponta das Canas',
+                locationHighlight: 'Florianópolis',
+                image: 'https://colchoesnippon.com/wp-content/uploads/2025/11/natus-residence-corretor-imoveis-darvil-bianchet-apartamento-casa-venda-floripa.jpg',
+                desc: 'O pôr do sol mais valorizado de Florianópolis.',
+                fullDesc: 'Infraestrutura completa com piscina, salão de festas e design biofílico.',
+                features: ['Píer Privativo', 'Adega Climatizada', 'Segurança 24h']
+            },
+            {
+                id: 3,
+                title: 'Stone House Concept',
+                neighborhood: 'Campeche Central',
+                locationHighlight: 'Próximo à Peq. Príncipe',
+                image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop',
+                desc: 'Modernidade e natureza em perfeita harmonia.',
+                fullDesc: 'Casas de alto padrão em condomínio fechado. Conceito aberto e acabamentos em pedra natural.',
+                features: ['Condomínio Fechado', 'Raia 25m', 'Fotovoltaica']
+            }
+        ],
+        openModal(prop) {
+            this.activeProp = prop;
+            this.modalOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+        closeModal() {
+            this.modalOpen = false;
+            this.activeProp = null;
+            document.body.style.overflow = 'auto';
+        },
+        submitForm() {
+            const text = `Olá Darvil, vi o lançamento *${this.activeProp.title}*. Meu nome é ${this.formData.name} e telefone ${this.formData.phone}. Gostaria de detalhes.`;
+            window.open(`https://wa.me/5548999278420?text=${encodeURIComponent(text)}`, '_blank');
+            this.closeModal();
+            this.formData = { name: '', phone: '' };
+        }
+    }">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-light text-white mb-4">
+                    Veja o que temos <span class="text-luxury-gold italic">agora</span> para você.
+                </h2>
+                <p class="text-luxury-muted font-light tracking-wide uppercase text-sm md:text-base">
+                    CONFIRA ABAIXO OS LANÇAMENTOS DISPONÍVEIS
+                </p>
+                <div class="w-24 h-[1px] bg-luxury-gold mx-auto mt-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <template x-for="prop in properties" :key="prop.id">
+                    <div class="group bg-luxury-card border border-white/5 hover:border-luxury-gold/30 transition-all duration-500 rounded-sm overflow-hidden flex flex-col shadow-lg">
+                        <div class="relative h-[300px] overflow-hidden">
+                            <img :src="prop.image" :alt="prop.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-luxury-card via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute top-4 left-4 bg-luxury-secondary/90 backdrop-blur-sm px-3 py-1 text-xs text-luxury-gold border border-luxury-gold/20 tracking-wider" x-text="prop.neighborhood.toUpperCase()"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 text-luxury-muted text-xs mb-3">
+                                <i data-lucide="map-pin" class="w-3 h-3 text-luxury-gold"></i>
+                                <span class="uppercase tracking-widest" x-text="prop.locationHighlight"></span>
+                            </div>
+                            <h3 class="text-2xl text-white font-light mb-2 group-hover:text-luxury-gold transition-colors" x-text="prop.title"></h3>
+                            <p class="text-gray-400 text-sm font-light leading-relaxed mb-6 line-clamp-2" x-text="prop.desc"></p>
+                            <button @click="openModal(prop)" class="mt-auto w-full py-3 border border-white/10 text-white text-xs tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2 uppercase rounded-sm">
+                                Ver Detalhes <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div x-show="modalOpen" class="fixed inset-0 z-[60] flex items-center justify-center p-4" x-cloak>
+            <div class="absolute inset-0 bg-luxury-primary/90 backdrop-blur-md" @click="closeModal()"></div>
+            <div class="relative bg-luxury-secondary border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl flex flex-col md:flex-row animate-fade-in">
+                <button @click="closeModal()" class="absolute top-4 right-4 z-50 p-2 bg-black/50 rounded-full text-white md:hidden">
+                    <i data-lucide="x"></i>
+                </button>
+                
+                <div class="w-full md:w-1/2 bg-black h-[300px] md:h-auto relative">
+                    <img :src="activeProp?.image" class="w-full h-full object-cover">
+                </div>
+
+                <div class="w-full md:w-1/2 p-8 flex flex-col bg-luxury-secondary">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-luxury-gold text-xs tracking-widest uppercase block mb-2" x-text="activeProp?.neighborhood"></span>
+                            <h3 class="text-3xl text-white font-light" x-text="activeProp?.title"></h3>
+                        </div>
+                        <button @click="closeModal()" class="text-gray-500 hover:text-white hidden md:block"><i data-lucide="x"></i></button>
+                    </div>
+
+                    <p class="text-gray-300 font-light text-sm mb-6" x-text="activeProp?.fullDesc"></p>
+                    
+                    <div class="grid grid-cols-2 gap-2 mb-8">
+                        <template x-for="feat in activeProp?.features">
+                            <div class="flex items-center gap-2 text-gray-400 text-xs">
+                                <i data-lucide="check" class="w-3 h-3 text-luxury-gold"></i>
+                                <span x-text="feat"></span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="mt-auto bg-luxury-primary p-6 rounded-sm border border-white/5">
+                        <h4 class="text-white text-sm uppercase tracking-widest mb-4">Interesse neste imóvel?</h4>
+                        <form @submit.prevent="submitForm" class="space-y-4">
+                            <input type="text" placeholder="Seu Nome" required x-model="formData.name" class="w-full bg-luxury-card border border-white/10 p-3 text-white text-sm focus:border-luxury-gold focus:outline-none rounded-sm">
+                            <input type="tel" placeholder="WhatsApp / Telefone" required x-model="formData.phone" class="w-full bg-luxury-card border border-white/10 p-3 text-white text-sm focus:border-luxury-gold focus:outline-none rounded-sm">
+                            <button type="submit" class="w-full bg-luxury-gold hover:bg-white text-black font-medium py-3 text-sm tracking-widest transition-colors uppercase rounded-sm">
+                                Receber Informações
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ SECTION (Alpine Logic) -->
+    <section id="quiz" class="py-24 bg-luxury-primary relative border-t border-white/5" x-data="{
+        step: 1,
+        objective: '',
+        type: '',
+        location: '',
+        budget: '',
+        name: '',
+        select(field, value) {
+            this[field] = value;
+        },
+        next() {
+            if (this.step < 4) this.step++;
+        },
+        prev() {
+            if (this.step > 1) this.step--;
+        },
+        submit() {
+            let msg = `Olá Darvil, me chamo *${this.name}*. Meu objetivo é *${this.objective}*. `;
+            if(this.objective === 'Vender') msg += `Imóvel em: *${this.location}*. `;
+            else msg += `Busco: *${this.type}*. `;
+            msg += `Faixa: *${this.budget}*.`;
+            window.open(`https://wa.me/5548999278420?text=${encodeURIComponent(msg)}`, '_blank');
+        },
+        isValid() {
+            if(this.step === 1) return !!this.objective;
+            if(this.step === 2) return this.objective === 'Vender' ? !!this.location : !!this.type;
+            if(this.step === 3) return !!this.budget;
+            if(this.step === 4) return this.name.length > 2;
+            return false;
+        }
+    }">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Property Match</span>
+                <h2 class="text-3xl md:text-5xl font-light text-white mt-4">Encontre a oportunidade ideal.</h2>
+                <p class="text-luxury-muted mt-4 font-light">Responda a 4 perguntas rápidas para receber uma curadoria personalizada.</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-luxury-card border border-white/5 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <!-- Progress -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-white/5">
+                    <div class="h-full bg-luxury-gold transition-all duration-500 ease-out" :style="`width: ${(step/4)*100}%`"></div>
+                </div>
+
+                <div class="mt-4 min-h-[300px] flex flex-col justify-center">
+                    
+                    <!-- Step 1 -->
+                    <div x-show="step === 1" class="animate-fade-in">
+                        <h3 class="text-2xl text-white mb-8 font-light flex items-center gap-3">
+                            <i data-lucide="home" class="text-luxury-gold"></i> Qual é o seu objetivo?
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button @click="select('objective', 'Comprar')" :class="objective === 'Comprar' ? 'border-luxury-gold bg-luxury-gold/10 text-white' : 'border-white/10 text-gray-400'" class="p-6 border rounded-sm transition-all text-left hover:border-luxury-gold hover:text-white">Comprar</button>
+                            <button @click="select('objective', 'Vender')" :class="objective === 'Vender' ? 'border-luxury-gold bg-luxury-gold/10 text-white' : 'border-white/10 text-gray-400'" class="p-6 border rounded-sm transition-all text-left hover:border-luxury-gold hover:text-white">Vender</button>
+                            <button @click="select('objective', 'Investir')" :class="objective === 'Investir' ? 'border-luxury-gold bg-luxury-gold/10 text-white' : 'border-white/10 text-gray-400'" class="p-6 border rounded-sm transition-all text-left hover:border-luxury-gold hover:text-white">Investir</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div x-show="step === 2" class="animate-fade-in" x-cloak>
+                        <h3 class="text-2xl text-white mb-8 font-light flex items-center gap-3">
+                            <i data-lucide="map-pin" class="text-luxury-gold"></i> <span x-text="objective === 'Vender' ? 'Onde fica seu imóvel?' : 'Que tipo de imóvel busca?'"></span>
+                        </h3>
+                        <div x-show="objective === 'Vender'">
+                            <input type="text" x-model="location" placeholder="Ex: Campeche, Novo Campeche..." class="w-full bg-luxury-primary/50 border border-white/20 p-4 rounded-sm text-white focus:border-luxury-gold focus:outline-none">
+                        </div>
+                        <div x-show="objective !== 'Vender'" class="grid gap-4">
+                            <template x-for="t in ['Casa', 'Cobertura', 'Condomínio Fechado', 'Terreno']">
+                                <button @click="select('type', t)" :class="type === t ? 'border-luxury-gold bg-luxury-gold/10 text-white' : 'border-white/10 text-gray-400'" class="p-5 border rounded-sm transition-all flex justify-between items-center hover:border-luxury-gold hover:text-white">
+                                    <span x-text="t"></span>
+                                    <i data-lucide="check" class="text-luxury-gold" x-show="type === t"></i>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div x-show="step === 3" class="animate-fade-in" x-cloak>
+                        <h3 class="text-2xl text-white mb-8 font-light flex items-center gap-3">
+                            <i data-lucide="dollar-sign" class="text-luxury-gold"></i> Qual sua expectativa de valor?
+                        </h3>
+                        <div class="space-y-4">
+                            <template x-for="b in ['R$ 1.5mi - R$ 3mi', 'R$ 3mi - R$ 5mi', 'Acima de R$ 5mi']">
+                                <button @click="select('budget', b)" :class="budget === b ? 'border-luxury-gold bg-luxury-gold/10 text-white' : 'border-white/10 text-gray-400'" class="w-full p-5 border rounded-sm transition-all text-left hover:border-luxury-gold hover:text-white" x-text="b"></button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div x-show="step === 4" class="animate-fade-in" x-cloak>
+                        <h3 class="text-2xl text-white mb-8 font-light flex items-center gap-3">
+                            <i data-lucide="user" class="text-luxury-gold"></i> Para finalizar, seu nome?
+                        </h3>
+                        <input type="text" x-model="name" placeholder="Seu nome completo" class="w-full bg-luxury-primary/50 border border-white/20 p-4 rounded-sm text-white focus:border-luxury-gold focus:outline-none mb-8">
+                        <button @click="submit" :disabled="!isValid()" :class="isValid() ? 'bg-luxury-gold text-black hover:bg-white' : 'bg-gray-800 text-gray-500'" class="w-full py-5 font-medium tracking-widest text-sm uppercase transition-all rounded-sm">
+                            Ver Oportunidades Exclusivas
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Nav -->
+                <div class="flex justify-between mt-10 pt-6 border-t border-white/5">
+                    <button @click="prev" :disabled="step === 1" class="flex items-center gap-2 text-sm uppercase tracking-wider transition-colors text-gray-400 hover:text-white disabled:opacity-30">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar
+                    </button>
+                    <button @click="next" x-show="step < 4" :disabled="!isValid()" class="flex items-center gap-2 text-sm uppercase tracking-wider transition-colors text-luxury-gold hover:text-white disabled:opacity-30">
+                        Próximo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-24 bg-luxury-secondary border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Lifestyle</span>
+                    <h2 class="text-3xl md:text-4xl font-light text-white mt-2">Viver o Extraordinário.</h2>
+                </div>
+                <p class="text-luxury-muted font-light mt-4 md:mt-0 max-w-md text-sm md:text-base">Uma seleção visual do estilo de vida que espera por você.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="group relative h-[400px] overflow-hidden cursor-pointer rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-luxury-primary/90 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8"><h3 class="text-2xl text-white font-light">Interiores</h3></div>
+                </div>
+                <div class="group relative h-[400px] overflow-hidden cursor-pointer rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-luxury-primary/90 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8"><h3 class="text-2xl text-white font-light">Lazer</h3></div>
+                </div>
+                <div class="group relative h-[400px] overflow-hidden cursor-pointer rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-luxury-primary/90 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8"><h3 class="text-2xl text-white font-light">Vistas</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Fixed Alpine Logic) -->
+    <section id="faq" class="py-24 bg-luxury-primary border-t border-white/5" x-data="{ active: null }">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Tire suas dúvidas</span>
+                <h2 class="text-3xl md:text-5xl font-light text-white mt-4">
+                    Investimento com <span class="italic font-serif text-luxury-muted">Clareza</span>.
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <template x-for="(item, idx) in [
+                    {q: 'Por que investir no Sul da Ilha agora?', a: 'O Sul da Ilha vive um momento único de valorização impulsionado pelo novo acesso ao aeroporto e obras de infraestrutura, mantendo sua essência natural.'},
+                    {q: 'Como funciona a segurança jurídica na compra?', a: 'Todas as transações são acompanhadas de uma Due Diligence completa. Verificamos matrículas e certidões antes de qualquer sinal.'},
+                    {q: 'Moro fora de Florianópolis, consigo comprar à distância?', a: 'Sim. 60% dos meus clientes são de fora. Realizamos visitas por vídeo chamada de alta resolução e assinatura digital.'},
+                    {q: 'Vocês trabalham com imóveis Off-Market?', a: 'Exatamente. Tenho acesso a uma carteira exclusiva de imóveis que não estão nos portais tradicionais por privacidade dos proprietários.'},
+                    {q: 'Quero vender meu imóvel. Como é a divulgação?', a: 'Marketing direcionado, produção audiovisual profissional e tráfego pago segmentado para investidores.'}
+                ]">
+                    <div :class="active === idx ? 'border-luxury-gold/30 bg-luxury-card' : 'border-white/5 bg-transparent'" class="border transition-colors duration-200 rounded-sm overflow-hidden">
+                        <button @click="active = (active === idx ? null : idx)" class="w-full flex justify-between items-center p-6 text-left focus:outline-none">
+                            <span class="text-lg font-light" :class="active === idx ? 'text-white' : 'text-gray-400'" x-text="item.q"></span>
+                            <span :class="active === idx ? 'text-luxury-gold' : 'text-gray-500'">
+                                <i data-lucide="minus" x-show="active === idx"></i>
+                                <i data-lucide="plus" x-show="active !== idx"></i>
+                            </span>
+                        </button>
+                        <div x-show="active === idx" class="p-6 pt-0 text-luxury-muted font-light leading-relaxed border-t border-white/5" x-text="item.a"></div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button onclick="window.open('https://wa.me/5548999278420', '_blank')" class="inline-flex items-center gap-3 px-8 py-4 bg-luxury-gold text-black font-bold tracking-widest rounded-sm hover:bg-white transition-all uppercase text-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Tirar Dúvidas no WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#02060D] py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h2 class="text-lg tracking-[0.2em] text-white uppercase mb-2">DARVIL BIANCHET</h2>
+                <p class="text-gray-500 text-xs font-light">CRECI SC 58927</p>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="text-gray-400 hover:text-luxury-gold"><i data-lucide="instagram"></i></a>
+                <a href="mailto:contato@darvil.com" class="text-gray-400 hover:text-luxury-gold"><i data-lucide="mail"></i></a>
+                <a href="https://wa.me/5548999278420" class="text-gray-400 hover:text-luxury-gold"><i data-lucide="phone"></i></a>
+            </div>
+            <div class="text-gray-600 text-xs font-light text-center md:text-right">
+                <p>&copy; 2025 Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Scripts -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+    </script>
+</body>
 </html>
