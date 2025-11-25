@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darvil Bianchet | Imóveis de Alto Padrão</title>
+    <meta name="description" content="A curadoria definitiva de imóveis de luxo no Sul da Ilha de Florianópolis." />
+    
+    <!-- Fonts: Inter for clean, modern luxury look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              luxury: {
+                primary: '#040B14',   // Deep Royal Navy (Main Background)
+                secondary: '#0B1526', // Rich Navy (Section Contrast)
+                card: '#111C30',      // Lighter Navy (Cards/Elements)
+                gold: '#D4AF37',      // Muted Gold
+                goldLight: '#F2D377',
+                text: '#EAEAEA',
+                muted: '#94A3B8',     // Slate Blueish Grey
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+      /* Custom Scrollbar for Webkit */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #040B14; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1E293B; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #D4AF37; 
+      }
+      body {
+        background-color: #040B14;
+        color: #EAEAEA;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </body>
+</html>
