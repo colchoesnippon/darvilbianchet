@@ -38,7 +38,7 @@ export const FEATURED_LAUNCHES: LaunchProperty[] = [
     shortDescription: 'O novo ícone de luxo no m² mais valorizado do Sul da Ilha.',
     fullStory: 'Feito para quem busca viver o essencial: o nascer do sol, o vento do leste, o mar sempre à vista e uma rotina guiada pelo bem-estar.',
     features: ['2 a 4 vagas', '2 a 5 suítes', '108 a 362m²', 'Pré-Lançamentos'],
-    videoUrl: 'https://www.youtube.com/watch?v=cy_JjOnCmAU' // Altere este link conforme necessário
+    videoUrl: 'https://www.youtube.com/watch?v=cy_JjOnCmAU'
   },
   {
     id: '2',
@@ -46,13 +46,13 @@ export const FEATURED_LAUNCHES: LaunchProperty[] = [
     neighborhood: 'Canasvieiras',
     locationHighlight: 'Praias de Mar Calmo',
     images: [
-      'https://d335luupugsy2.cloudfront.net/cms/files/731102/1762446423/\$0uk5ht4plxln',
+      'https://d335luupugsy2.cloudfront.net/cms/files/731102/1762446423/$0uk5ht4plxln',
       'https://arcanjoandrade.com.br/storage/2025/12/natus-residence-ponta-das-canas-florianopolis-apartamento-3.jpg',
       'https://gralha2.inforcedata.com.br/api/image/76455603.jpg',
       'https://gralha2.inforcedata.com.br/api/image/76455770.jpg'
     ],
     shortDescription: 'O pôr do sol mais exclusivo de Florianópolis.',
-    fullStory: 'O Natus Residence é um refúgio de paz no Norte da Ilha. Com um design que integra a vegetação nativa à arquitetura moderna, oferece um píer privativo para embarcações e um pôr do sol cinematográfico todos os dias. Luxo, natureza e exclusividade em perfeita harmonia.',
+    fullStory: 'O Natus Residence é um refúgio de paz no Norte da Ilha. Com um design que integra a vegetação nativa à arquitetura moderna, oferece um píer privativo para embarcações e um pôr do sol cinematográfico todos os dias.',
     features: ['Píer Privativo', 'Design Biofílico', 'Beach Club Próprio', 'Segurança Inteligente 24h'],
     videoUrl: 'https://youtu.be/iIfFyWj4ZWQ'
   },
@@ -67,9 +67,9 @@ export const FEATURED_LAUNCHES: LaunchProperty[] = [
       'https://makainovocampeche.com.br/wp-content/uploads/2024/07/3-1.jpg',
       'https://makainovocampeche.com.br/wp-content/uploads/2024/07/5-1.jpg'
     ],
-    shortDescription: 'a experiência de vida que combina o conforto de um lar com as comodidades de um resort.',
-    fullStory: 'Um lugar que concentra espaços de lazer e convivência ao ar livre, em contato com a natureza. A praça, com acesso à praia, é um ponto de encontro da comunidade com a diversão. ',
+    shortDescription: 'A experiência de vida que combina o conforto de um lar com as comodidades de um resort.',
+    fullStory: 'Um lugar que concentra espaços de lazer e convivência ao ar livre, em contato com a natureza. A praça, com acesso à praia, é um ponto de encontro da comunidade com a diversão.',
     features: ['Condomínio Fechado de Luxo', 'Spa Privativo por Unidade', 'Energia Solar Sustentável', 'Localização Privilegiada'],
-    videoUrl: 'https://www.youtube.com/watch?v=bbudbCgDLU0&t=3s'
+    videoUrl: 'https://www.youtube.com/watch?v=bbudbCgDLU0'
   }
 ];

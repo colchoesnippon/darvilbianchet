@@ -9,22 +9,16 @@ import Gallery from './components/Gallery';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
-// Define AOS on window to avoid TS errors without specific types installed
-declare global {
-  interface Window {
-    AOS: any;
-  }
-}
-
 const App: React.FC = () => {
   useEffect(() => {
-    // Initialize Animate On Scroll
-    if (window.AOS) {
-      window.AOS.init({
+    // Inicialização segura do AOS
+    if (typeof window !== 'undefined' && (window as any).AOS) {
+      (window as any).AOS.init({
         once: true,
         duration: 800,
         easing: 'ease-out-cubic',
-        offset: 100,
+        offset: 50,
+        disable: window.innerWidth < 768 // Desabilita em mobile se necessário para performance
       });
     }
   }, []);

@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darvil Bianchet | Luxury Real Estate</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,31 +18,17 @@
                 extend: {
                     colors: {
                         luxury: {
-                            primary: '#040B14',   // Deep Navy Black
-                            secondary: '#0B1526', // Rich Navy
-                            card: '#111C30',      // Lighter Navy for cards
-                            gold: '#D4AF37',      // Muted Gold
-                            muted: '#94A3B8',     // Slate text
-                            text: '#E2E8F0'       // Light text
+                            primary: '#040B14',
+                            secondary: '#0B1526',
+                            card: '#111C30',
+                            gold: '#D4AF37',
+                            muted: '#94A3B8',
+                            text: '#E2E8F0'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'zoom-in': 'zoomIn 0.3s ease-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        zoomIn: {
-                            '0%': { opacity: '0', transform: 'scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'scale(1)' },
-                        }
                     }
                 }
             }
@@ -50,27 +36,42 @@
     </script>
 
     <style>
-        html { scroll-smooth: smooth; scroll-padding-top: 80px; }
-        body { background-color: #040B14; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { background-color: #040B14; margin: 0; padding: 0; color: #E2E8F0; min-height: 100vh; }
+        
+        #root { min-height: 100vh; display: block; }
+        
+        /* Fallback de visibilidade */
+        [data-aos] {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        .aos-init[data-aos] {
+            transition-property: transform, opacity;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #040B14; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
-    <!-- O index.tsx é importado automaticamente pelo sistema -->
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
