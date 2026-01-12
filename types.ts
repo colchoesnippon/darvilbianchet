@@ -23,6 +23,7 @@ export interface LaunchProperty {
   locationHighlight: string;
   images: string[];
   shortDescription: string;
-  fullDescription: string;
+  fullStory: string;
   features: string[];
+  videoUrl?: string;
 }

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PLACEHOLDER_IMAGES, BROKER_NAME } from '../constants';
 
@@ -24,6 +25,7 @@ const About: React.FC = () => {
           {/* Text Side */}
           <div className="w-full lg:w-1/2" data-aos="fade-left">
             <span className="text-luxury-gold text-sm tracking-[0.2em] uppercase block mb-4">Sobre o Especialista</span>
+            {/* Fix: Changed 'class' to 'className' to resolve React/TS error */}
             <h2 className="text-3xl md:text-5xl font-light text-white mb-8 leading-tight">
               Mais que um corretor, <br />
               <span className="italic font-serif text-luxury-muted">seu parceiro de investimentos.</span>
@@ -44,7 +46,7 @@ const About: React.FC = () => {
             <div className="mt-12 flex gap-8">
               <div>
                 <p className="text-4xl font-light text-white mb-2">+100mi</p>
-                <p className="text-xs uppercase tracking-widest text-luxury-muted">Comercializado</p>
+                <p className="text-xs uppercase tracking-widest text-luxury-muted">COMERCIALIZADOS</p>
               </div>
               <div>
                 <p className="text-4xl font-light text-white mb-2">Sul da Ilha</p>

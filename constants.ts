@@ -2,70 +2,74 @@ import { NavItem, LaunchProperty } from './types';
 
 export const BROKER_NAME = "DARVIL BIANCHET";
 export const BROKER_CRECI = "58927";
-export const BROKER_PHONE = "5548999278420"; // Format for WhatsApp API
+export const BROKER_PHONE = "5548999278420";
 export const WHATSAPP_LINK_BASE = `https://wa.me/${BROKER_PHONE}`;
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Início', href: '#hero' },
-  { label: 'Lançamentos', href: '#launches' },
   { label: 'Processo', href: '#process' },
-  { label: 'Match', href: '#quiz' },
   { label: 'Sobre', href: '#about' },
+  { label: 'Lançamentos', href: '#launches' },
+  { label: 'Match', href: '#quiz' },
   { label: 'Lifestyle', href: '#gallery' },
 ];
 
 export const PLACEHOLDER_IMAGES = {
-  hero: "https://colchoesnippon.com/wp-content/uploads/2025/11/sul-da-ilha-corretor-imoveis-darvil-bianchet-apartamento-casa-venda-floripa.jpg", // Modern dark luxury house
-  // Foto principal da Hero (Dobra inicial)
+  hero: "https://colchoesnippon.com/wp-content/uploads/2025/11/sul-da-ilha-corretor-imoveis-darvil-bianchet-apartamento-casa-venda-floripa.jpg",
   brokerHero: "https://colchoesnippon.com/wp-content/uploads/2025/11/darvil-bianchet-corretor-imoveis-de-luxo-em-florianopolis-sul-da-ilha.jpg", 
-  // Foto secundária para a seção Sobre
-  brokerAbout: "https://colchoesnippon.com/wp-content/uploads/2025/11/558092400_18527960554056463_4950913360348287322_n.jpg", // Professional placeholder used until second photo is provided
-  lifestyle1: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop", // Modern Interior
-  lifestyle2: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop", // Luxury Pool
-  lifestyle3: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop", // Elegant Living Room
+  brokerAbout: "https://colchoesnippon.com/wp-content/uploads/2025/11/558092400_18527960554056463_4950913360348287322_n.jpg",
+  lifestyle1: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop",
+  lifestyle2: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
+  lifestyle3: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop",
 };
 
 export const FEATURED_LAUNCHES: LaunchProperty[] = [
   {
     id: '1',
-    title: 'La Mare',
-    neighborhood: 'Campeche',
-    locationHighlight: 'No ritmo do mar.',
+    title: 'La Mare Campeche',
+    neighborhood: 'Novo Campeche',
+    locationHighlight: 'Pé na areia exclusivo',
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=800&auto=format&fit=crop'
+      'https://www.cfl.com.br/app/uploads/2025/11/%C2%A9BLACKHAUS_CFL_CAM_PISCINA_03.png',
+      'https://www.cfl.com.br/app/uploads/2025/11/%C2%A9BLACKHAUS_CFL_CAM_PISCINA_01.png',
+      'https://www.cfl.com.br/app/uploads/2025/11/%C2%A9BLACKHAUS_CFL_CAM_LOUNGE_EXTERNO.png',
+      'https://www.cfl.com.br/app/uploads/2025/11/%C2%A9BLACKHAUS_CFL_CAM_PLAYGROUND.png'
     ],
-    shortDescription: 'Um refúgio raro, em um terreno exuberante de 12.000m²',
-    fullDescription: 'Feito para quem busca viver o essencial: o nascer do sol, o vento do leste, o mar sempre à vista e uma rotina guiada pelo bem-estar.',
-    features: ['Vista Mar Definitiva', '2 a 5 Suítes', '2 a 4 Vagas', '108 a 362m²']
+    shortDescription: 'O novo ícone de luxo no m² mais valorizado do Sul da Ilha.',
+    fullStory: 'Feito para quem busca viver o essencial: o nascer do sol, o vento do leste, o mar sempre à vista e uma rotina guiada pelo bem-estar.',
+    features: ['2 a 4 vagas', '2 a 5 suítes', '108 a 362m²', 'Pré-Lançamentos'],
+    videoUrl: 'https://www.youtube.com/watch?v=cy_JjOnCmAU' // Altere este link conforme necessário
   },
   {
     id: '2',
     title: 'Natus Residence',
-    neighborhood: 'Ponta Das Canas',
-    locationHighlight: 'Florianópolis ',
+    neighborhood: 'Canasvieiras',
+    locationHighlight: 'Praias de Mar Calmo',
     images: [
-      'https://colchoesnippon.com/wp-content/uploads/2025/11/natus-residence-corretor-imoveis-darvil-bianchet-apartamento-casa-venda-floripa.jpg',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop'
+      'https://d335luupugsy2.cloudfront.net/cms/files/731102/1762446423/\$0uk5ht4plxln',
+      'https://arcanjoandrade.com.br/storage/2025/12/natus-residence-ponta-das-canas-florianopolis-apartamento-3.jpg',
+      'https://gralha2.inforcedata.com.br/api/image/76455603.jpg',
+      'https://gralha2.inforcedata.com.br/api/image/76455770.jpg'
     ],
-    shortDescription: 'O pôr do sol mais valorizado de Florianópolis.',
-    fullDescription: 'Com projeto da CBA Empreendimentos, este lançamento oferece uma infraestrutura completa, incluindo piscina coletiva, piscina infantil, salão de festas, sala de fitness, churrasqueira e brinquedoteca. ',
-    features: ['Píer Privativo', 'Adega Climatizada', 'Design Biofílico', 'Segurança 24h']
+    shortDescription: 'O pôr do sol mais exclusivo de Florianópolis.',
+    fullStory: 'O Natus Residence é um refúgio de paz no Norte da Ilha. Com um design que integra a vegetação nativa à arquitetura moderna, oferece um píer privativo para embarcações e um pôr do sol cinematográfico todos os dias. Luxo, natureza e exclusividade em perfeita harmonia.',
+    features: ['Píer Privativo', 'Design Biofílico', 'Beach Club Próprio', 'Segurança Inteligente 24h'],
+    videoUrl: 'https://youtu.be/iIfFyWj4ZWQ'
   },
   {
     id: '3',
-    title: 'Stone House Concept',
-    neighborhood: 'Campeche Central',
-    locationHighlight: 'Próximo à Pequeno Príncipe',
+    title: 'MAKAI Beachfront',
+    neighborhood: 'Nova Campeche',
+    locationHighlight: 'De Viver o Verdadeiro Lifestyle',
     images: [
-      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=800&auto=format&fit=crop'
+      'https://makainovocampeche.com.br/wp-content/uploads/2024/07/1-CAPA.jpg',
+      'https://makainovocampeche.com.br/wp-content/uploads/2024/07/2-1.jpg',
+      'https://makainovocampeche.com.br/wp-content/uploads/2024/07/3-1.jpg',
+      'https://makainovocampeche.com.br/wp-content/uploads/2024/07/5-1.jpg'
     ],
-    shortDescription: 'Modernidade e natureza em perfeita harmonia.',
-    fullDescription: 'Casas de alto padrão em condomínio fechado. Conceito aberto, integração total com a natureza preservada do terreno e acabamentos em pedra natural e madeira nobre.',
-    features: ['Condomínio Fechado', 'Piscina Raia 25m', 'Spa Privativo', 'Energia Fotovoltaica']
+    shortDescription: 'a experiência de vida que combina o conforto de um lar com as comodidades de um resort.',
+    fullStory: 'Um lugar que concentra espaços de lazer e convivência ao ar livre, em contato com a natureza. A praça, com acesso à praia, é um ponto de encontro da comunidade com a diversão. ',
+    features: ['Condomínio Fechado de Luxo', 'Spa Privativo por Unidade', 'Energia Solar Sustentável', 'Localização Privilegiada'],
+    videoUrl: 'https://www.youtube.com/watch?v=bbudbCgDLU0&t=3s'
   }
 ];
