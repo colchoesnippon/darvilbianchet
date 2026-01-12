@@ -28,17 +28,17 @@ export const PLACEHOLDER_IMAGES = {
 export const FEATURED_LAUNCHES: LaunchProperty[] = [
   {
     id: '1',
-    title: 'Reserva do Mar',
-    neighborhood: 'Novo Campeche',
-    locationHighlight: 'Pé na areia exclusivo',
+    title: 'La Mare',
+    neighborhood: 'Campeche',
+    locationHighlight: 'No ritmo do mar.',
     images: [
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=800&auto=format&fit=crop'
     ],
-    shortDescription: 'Sofisticação absoluta a poucos passos do oceano.',
-    fullDescription: 'Um projeto arquitetônico premiado que une o minimalismo tropical com o luxo contemporâneo. Coberturas duplex com piscina privativa e vista eterna para a Ilha do Campeche.',
-    features: ['Vista Mar Definitiva', '3 a 4 Suítes', 'Acabamento em Mármore', 'Automação Full']
+    shortDescription: 'Um refúgio raro, em um terreno exuberante de 12.000m²',
+    fullDescription: 'Feito para quem busca viver o essencial: o nascer do sol, o vento do leste, o mar sempre à vista e uma rotina guiada pelo bem-estar.',
+    features: ['Vista Mar Definitiva', '2 a 5 Suítes', '2 a 4 Vagas', '108 a 362m²']
   },
   {
     id: '2',

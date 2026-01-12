@@ -44,7 +44,7 @@ const About: React.FC = () => {
             <div className="mt-12 flex gap-8">
               <div>
                 <p className="text-4xl font-light text-white mb-2">+100mi</p>
-                <p className="text-xs uppercase tracking-widest text-luxury-muted">VGV Negociado</p>
+                <p className="text-xs uppercase tracking-widest text-luxury-muted">Comercializado</p>
               </div>
               <div>
                 <p className="text-4xl font-light text-white mb-2">Sul da Ilha</p>

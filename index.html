@@ -57,9 +57,9 @@
 <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
@@ -180,7 +180,7 @@
             <div class="text-center mb-20">
                 <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase">Metodologia</span>
                 <h2 class="text-3xl md:text-5xl font-light text-white mt-4">
-                    3 Passos para seu <span className="italic font-serif text-luxury-muted">Imóvel Ideal</span>.
+                    3 Passos para seu <span class="italic font-serif text-luxury-muted">Imóvel Ideal</span>.
                 </h2>
                 <p class="text-luxury-muted font-light mt-4 max-w-2xl mx-auto">
                     Uma jornada desenhada para eliminar ruídos e garantir cadência, ritmo e assertividade na sua escolha.
@@ -238,7 +238,7 @@
                 </div>
                 <div class="w-full lg:w-1/2">
                     <span class="text-luxury-gold text-sm tracking-[0.2em] uppercase block mb-4">Sobre o Especialista</span>
-                    <h2 className="text-3xl md:text-5xl font-light text-white mb-8 leading-tight">
+                    <h2 class="text-3xl md:text-5xl font-light text-white mb-8 leading-tight">
                         Mais que um corretor, <br />
                         <span class="italic font-serif text-luxury-muted">seu parceiro na busca do imóvel e do investimento ideais.</span>
                     </h2>
@@ -256,7 +256,7 @@
                     <div class="mt-12 flex gap-8">
                         <div>
                             <p class="text-4xl font-light text-white mb-2">+100mi</p>
-                            <p class="text-xs uppercase tracking-widest text-luxury-muted">VGV Negociado</p>
+                            <p class="text-xs uppercase tracking-widest text-luxury-muted">COMERCIALIZADOS</p>
                         </div>
                         <div>
                             <p class="text-4xl font-light text-white mb-2">Florianópolis</p>
@@ -275,7 +275,7 @@
         properties: [
             {
                 id: 1,
-                title: 'Reserva do Mar',
+                title: 'La Mare Campeche',
                 neighborhood: 'Novo Campeche',
                 locationHighlight: 'Pé na areia exclusivo',
                 image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
@@ -525,5 +525,39 @@
         </div>
     </footer>
 
+    <!-- Script para Rolagem Suave e Interceptação de Âncoras -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#' || href === '#!') return;
+
+                    const targetId = href.substring(1);
+                    const element = document.getElementById(targetId);
+                    
+                    if (element) {
+                        e.preventDefault();
+                        
+                        // Garante que o menu mobile feche antes da rolagem
+                        // (Disparando o clique no overlay se estiver aberto via Alpine)
+                        const header = document.querySelector('header');
+                        if (header && header.__x && header.__x.$data) {
+                            header.__x.$data.mobileMenuOpen = false;
+                        }
+
+                        element.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Atualiza a URL sem recarregar e sem causar 'pulo'
+                        history.pushState(null, null, href);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
