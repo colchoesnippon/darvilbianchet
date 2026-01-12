@@ -116,7 +116,7 @@ const PropertyMatchQuiz: React.FC = () => {
                   />
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {['Casa', 'Cobertura', 'Condomínio Fechado', 'Terreno'].map((opt) => (
+                    {['Casa', 'Casal em Condomínio', 'Apartamento', 'Cobertura', 'Terreno', 'Outros'].map((opt) => (
                       <button
                         key={opt}
                         onClick={() => handleSelection('propertyType', opt)}

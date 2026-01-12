@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
           {/* LEFT SIDE: Content */}
           <div className="text-center lg:text-left order-1" data-aos="fade-right" data-aos-duration="1000">
             <span className="inline-block py-1 px-3 border border-luxury-gold/30 rounded-full text-xs font-medium tracking-[0.2em] text-luxury-gold mb-6 backdrop-blur-sm bg-luxury-gold/5">
-              FLORIANÓPOLIS • SUL DA ILHA
+              SUL DA ILHA • CENTRO • NORTE DA ILHA
             </span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-6">

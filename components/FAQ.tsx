@@ -20,7 +20,7 @@ const FAQ: React.FC = () => {
 
   const questions: FAQItem[] = [
     {
-      question: "Por que investir no Sul da Ilha agora?",
+      question: "Por que investir em Florianópolis agora?",
       answer: "O Sul da Ilha vive um momento único de valorização impulsionado pelo novo acesso ao aeroporto e obras de infraestrutura, mantendo, contudo, sua essência natural. É a região de Florianópolis com maior potencial de retorno sobre investimento (ROI) a médio prazo."
     },
     {

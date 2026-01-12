@@ -13,7 +13,7 @@ const ServiceProcess: React.FC = () => {
       id: '02',
       icon: <Filter size={32} />,
       title: "A Curadoria",
-      description: "Eu utilizo minha rede e expertise para filtrar o mercado e envio apenas as opções que realmente fazem sentido para você, poupando seu tempo."
+      description: "Eu utilizo minha rede e expertise para filtrar o mercado e sleciono apenas as opções que realmente fazem sentido para você, poupando seu tempo."
     },
     {
       id: '03',
@@ -35,7 +35,7 @@ const ServiceProcess: React.FC = () => {
             3 Passos para seu <span className="italic font-serif text-luxury-muted">Imóvel Ideal</span>.
           </h2>
           <p className="text-luxury-muted font-light mt-4 max-w-2xl mx-auto">
-            Uma jornada desenhada para eliminar ruídos e garantir assertividade na sua escolha.
+            Uma jornada desenhada para eliminar ruídos e garantir cadência, ritmo e assertividade na sua escolha.
           </p>
         </div>
 
