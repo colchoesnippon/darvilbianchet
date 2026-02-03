@@ -8,10 +8,17 @@ const Obrigado: React.FC = () => {
 
   useEffect(() => {
     /**
-     * COLE AQUI O SNIPPET DE CONVERSÃO DO GOOGLE ADS 
+     * DISPARO DE CONVERSÃO DO GOOGLE ADS 
      * Este bloco é executado assim que o usuário aterrissa na página.
      */
-    console.log("Evento de conversão do Google Ads disparado.");
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-17927081644/cAd2CPiEzPEbEKydpuRC',
+        'value': 1.0,
+        'currency': 'BRL'
+      });
+      console.log("Evento de conversão do Google Ads disparado com sucesso.");
+    }
 
     // Redirecionamento automático após exatamente 3 segundos
     const timer = setTimeout(() => {

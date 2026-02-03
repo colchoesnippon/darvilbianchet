@@ -12,12 +12,19 @@ export const THANK_YOU_PATH = "/obrigado";
  * Stores the pending message in sessionStorage to be retrieved by the Thank You page.
  */
 export const navigateToWhatsApp = (message?: string) => {
+  // 1. Dispara a conversão do Google Ads (Snippet de Clique)
+  if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+    (window as any).gtag_report_conversion();
+  }
+
+  // 2. Salva a mensagem personalizada do Quiz (se houver)
   if (message) {
     sessionStorage.setItem('pending_whatsapp_message', message);
   } else {
     sessionStorage.removeItem('pending_whatsapp_message');
   }
 
+  // 3. Navega para a página de Obrigado para registrar a conversão visual
   const event = new CustomEvent('app-nav', { detail: THANK_YOU_PATH });
   window.dispatchEvent(event);
 };
