@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 
 const Obrigado: React.FC = () => {
-  const targetLink = "https://wa.me/5548999278420?text=Olá%20Darvil,%20gostaria%20de%20conversar%20sobre%20imóveis%20exclusivos.";
+  const pendingMessage = sessionStorage.getItem('pending_whatsapp_message');
+  const defaultMessage = "Olá Darvil, gostaria de conversar sobre imóveis exclusivos.";
+  const finalMessage = pendingMessage || defaultMessage;
+  const targetLink = `https://wa.me/5548999278420?text=${encodeURIComponent(finalMessage)}`;
 
   useEffect(() => {
     /**
      * COLE AQUI O SNIPPET DE CONVERSÃO DO GOOGLE ADS 
      * Este bloco é executado assim que o usuário aterrissa na página.
-     * Exemplo: 
-     * if (window.gtag) {
-     *   window.gtag('event', 'conversion', { 'send_to': 'AW-XXXXXXXXX/YYYYYYYYYYYY' });
-     * }
      */
     console.log("Evento de conversão do Google Ads disparado.");
 
@@ -20,7 +19,7 @@ const Obrigado: React.FC = () => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [targetLink]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 text-[#E2E8F0] selection:bg-[#D4AF37] selection:text-black" style={{ backgroundColor: '#040B14' }}>

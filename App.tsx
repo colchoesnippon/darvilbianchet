@@ -25,13 +25,13 @@ const App: React.FC = () => {
       });
     }
 
-    // Custom listener for internal navigation events
+    // Custom listener for internal navigation events (fixes SecurityError on pushState)
     const handleAppNav = (e: any) => {
       setCurrentPath(e.detail);
       window.scrollTo(0, 0);
     };
 
-    // Standard listener for browser back/forward buttons
+    // Standard listener for browser back/forward buttons (if supported)
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
     };
@@ -46,6 +46,7 @@ const App: React.FC = () => {
   }, []);
 
   // Robust routing check for the conversion trigger page
+  // Using includes('obrigado') to match regardless of extension or query params
   if (currentPath.toLowerCase().includes('obrigado')) {
     return <Obrigado />;
   }

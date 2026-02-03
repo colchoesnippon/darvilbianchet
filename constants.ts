@@ -9,8 +9,15 @@ export const THANK_YOU_PATH = "/obrigado";
 /**
  * Manages navigation to the Thank You page.
  * Uses a custom event because history.pushState is blocked in some framed environments.
+ * Stores the pending message in sessionStorage to be retrieved by the Thank You page.
  */
 export const navigateToWhatsApp = (message?: string) => {
+  if (message) {
+    sessionStorage.setItem('pending_whatsapp_message', message);
+  } else {
+    sessionStorage.removeItem('pending_whatsapp_message');
+  }
+
   const event = new CustomEvent('app-nav', { detail: THANK_YOU_PATH });
   window.dispatchEvent(event);
 };
