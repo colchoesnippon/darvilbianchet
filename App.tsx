@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeaturedLaunches from './components/FeaturedLaunches';
@@ -8,8 +8,11 @@ import About from './components/About';
 import Gallery from './components/Gallery';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import Obrigado from './components/Obrigado';
 
 const App: React.FC = () => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
   useEffect(() => {
     // Inicialização segura do AOS
     if (typeof window !== 'undefined' && (window as any).AOS) {
@@ -18,10 +21,34 @@ const App: React.FC = () => {
         duration: 800,
         easing: 'ease-out-cubic',
         offset: 50,
-        disable: window.innerWidth < 768 // Desabilita em mobile se necessário para performance
+        disable: window.innerWidth < 768
       });
     }
+
+    // Custom listener for internal navigation events
+    const handleAppNav = (e: any) => {
+      setCurrentPath(e.detail);
+      window.scrollTo(0, 0);
+    };
+
+    // Standard listener for browser back/forward buttons
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('app-nav', handleAppNav);
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+      window.removeEventListener('app-nav', handleAppNav);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
+
+  // Robust routing check for the conversion trigger page
+  if (currentPath.toLowerCase().includes('obrigado')) {
+    return <Obrigado />;
+  }
 
   return (
     <div className="min-h-screen bg-luxury-primary text-luxury-text selection:bg-luxury-gold selection:text-black font-sans">

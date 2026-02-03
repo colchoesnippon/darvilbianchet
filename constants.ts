@@ -4,6 +4,16 @@ export const BROKER_NAME = "DARVIL BIANCHET";
 export const BROKER_CRECI = "58927";
 export const BROKER_PHONE = "5548999278420";
 export const WHATSAPP_LINK_BASE = `https://wa.me/${BROKER_PHONE}`;
+export const THANK_YOU_PATH = "/obrigado";
+
+/**
+ * Manages navigation to the Thank You page.
+ * Uses a custom event because history.pushState is blocked in some framed environments.
+ */
+export const navigateToWhatsApp = (message?: string) => {
+  const event = new CustomEvent('app-nav', { detail: THANK_YOU_PATH });
+  window.dispatchEvent(event);
+};
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Início', href: '#hero' },
@@ -47,7 +57,7 @@ export const FEATURED_LAUNCHES: LaunchProperty[] = [
     locationHighlight: 'Praias de Mar Calmo',
     images: [
       'https://d335luupugsy2.cloudfront.net/cms/files/731102/1762446423/$0uk5ht4plxln',
-      'https://arcanjoandrade.com.br/storage/2025/12/natus-residence-ponta-das-canas-florianopolis-apartamento-3.jpg',
+      'https://arcanjoandrade.com.br/storage/2025/12/natus-residence-ponta das-canas-florianopolis-apartamento-3.jpg',
       'https://gralha2.inforcedata.com.br/api/image/76455603.jpg',
       'https://gralha2.inforcedata.com.br/api/image/76455770.jpg'
     ],

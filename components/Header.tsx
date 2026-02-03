@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { BROKER_NAME, NAV_LINKS, WHATSAPP_LINK_BASE } from '../constants';
+import { BROKER_NAME, NAV_LINKS, navigateToWhatsApp } from '../constants';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   }, []);
 
   const handleWhatsAppClick = () => {
-    window.open(`${WHATSAPP_LINK_BASE}?text=Olá Darvil, gostaria de saber mais sobre imóveis exclusivos.`, '_blank');
+    navigateToWhatsApp('Olá Darvil, gostaria de saber mais sobre imóveis exclusivos.');
   };
 
   return (

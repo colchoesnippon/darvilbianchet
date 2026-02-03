@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Minus, MessageCircle } from 'lucide-react';
-import { WHATSAPP_LINK_BASE } from '../constants';
+import { navigateToWhatsApp } from '../constants';
 
 interface FAQItem {
   question: string;
@@ -15,7 +15,7 @@ const FAQ: React.FC = () => {
   };
 
   const handleWhatsAppClick = () => {
-    window.open(`${WHATSAPP_LINK_BASE}?text=Olá Darvil, li as dúvidas frequentes no site e gostaria de conversar mais.`, '_blank');
+    navigateToWhatsApp('Olá Darvil, li as dúvidas frequentes no site e gostaria de conversar mais.');
   };
 
   const questions: FAQItem[] = [
@@ -74,7 +74,6 @@ const FAQ: React.FC = () => {
                 </span>
               </button>
               
-              {/* Simple Conditional Rendering - No complex transitions to avoid bugs */}
               {openIndex === index && (
                 <div className="p-6 pt-0 text-luxury-muted font-light leading-relaxed border-t border-white/5">
                   {item.answer}

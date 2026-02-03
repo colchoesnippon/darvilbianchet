@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, Check, Home, DollarSign, User, MapPin } from 'lucide-react';
-import { QuizState, QuizObjective, PropertyType, PriceRange } from '../types';
-import { WHATSAPP_LINK_BASE } from '../constants';
+import { QuizState } from '../types';
+import { navigateToWhatsApp } from '../constants';
 
 const PropertyMatchQuiz: React.FC = () => {
   const [state, setState] = useState<QuizState>({
@@ -40,8 +40,7 @@ const PropertyMatchQuiz: React.FC = () => {
     message += `Faixa de valor: *${state.budget}*.\n`;
     message += `Gostaria de ver oportunidades exclusivas.`;
 
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`${WHATSAPP_LINK_BASE}?text=${encodedMessage}`, '_blank');
+    navigateToWhatsApp(message);
   };
 
   const isStepValid = () => {

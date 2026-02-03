@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, ArrowRight, X, Check, Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import { FEATURED_LAUNCHES, WHATSAPP_LINK_BASE } from '../constants';
+import { MapPin, ArrowRight, X, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FEATURED_LAUNCHES, navigateToWhatsApp } from '../constants';
 import { LaunchProperty } from '../types';
 
 const FeaturedLaunches: React.FC = () => {
@@ -37,7 +37,7 @@ const FeaturedLaunches: React.FC = () => {
     if (!selectedProperty) return;
 
     const message = `Olá Darvil, desejo informações exclusivas sobre o lançamento *${selectedProperty.title}*. Meu nome é ${formData.name}.`;
-    window.open(`${WHATSAPP_LINK_BASE}?text=${encodeURIComponent(message)}`, '_blank');
+    navigateToWhatsApp(message);
   };
 
   return (
